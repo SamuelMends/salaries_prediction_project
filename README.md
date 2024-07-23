@@ -1,2 +1,2 @@
-# ai_machinelearning_lab
+# salaries_prediction_project
  
