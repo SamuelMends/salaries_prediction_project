@@ -19,3 +19,17 @@ scaler_sam = pickle.load(open('dsam_scaler.pkl', 'rb'))
 @app.route('/')
 def home():
     return render_template('home.html')
+
+# Rota para a API de Previsão:
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        data = {
+            'Country': request.form['Country'],
+            'Education': request.form['education'],
+            'DevType': request.form['devtype'],
+            'Experience': float(request.form['experience']),
+    }
+    except KeyError as e:
+        return render_template("home.html", prediction_text = f"Entrada inválida. Erro: {e}")
+        
