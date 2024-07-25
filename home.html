@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary - Prediction</title>
+    <link rel="stylesheet" href="./static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+
+<body>
+    <div class="main-container">
+        <div id="content">
+            <div class="hs4 mb16 sm:pl8 sm:pr8 ps-relative" id="">
+                <div class="d-flex flex__center pb8 h100">
+                    <div class="flex--cell ta-center wmx5">
+                        <h1 class="fs-headline2 fc-blue-500 mb12">Tech Salary Prediction Machine<</h1>
+                        <h2 class="fs-body3 fc-black ws4">Welcome, try it out the Salary Prediction Machine/h2>
+                    </div>
+                </div>
+
+                <div class="w100 mt32 px16">
+                    <div class="flex--cell ta-center wmx5">
+                        <div class="content">
+                            <div class="g-row">
+                                <div class="gcol8">
+                                    <br />
+                                    <h4 class="fs-body3 fc-black ws4" style="text-align: center;">Previsão de Salário</h4>
+                                    <div class="copy-container">
+                                        <p class="fs-body3 fc-black ws4" style="text-align: center;">he predictions will be generated based on the inputs below:</p>
+                                        <p>
+                                        <div class="prediction-form">
+                                            <form action="{{ url_for('predict')}}" method="post">
+                                                <br />
+                                                <label for="Country">Country:</label>
+                                                <select class="form-select" aria-label="Default select example" name="Country">
+                                                    <option selected>Pick a Country:</option>
+                                                    <option value="9">Australia</option>
+                                                    <option value="6">Brazil</option>
+                                                    <option value="5">Canada</option>
+                                                    <option value="7">France</option>
+                                                    <option value="4">Germany</option>
+                                                    <option value="2">India</option>
+                                                    <option value="12">Italy</option>
+                                                    <option value="10">Netherlands</option>
+                                                    <option value="11">Poland</option>
+                                                    <option value="13">Russian Federation</option>
+                                                    <option value="8">Spain</option>
+                                                    <option value="14">Sweden</option>
+                                                    <option value="3">United Kingdom</option>
+                                                    <option value="1">United States</option>
+                                                    <option value="0">Other</option>
+                                                  </select>
+                                                
+
+                                                <label for="education">Education:</label>
+                                                <select class="form-select" aria-label="Default select example" name="education">
+                                                    <option selected>Pick a Education Level:</option>
+                                                    <option value="1">Bachelor’s degree</option>
+                                                    <option value="2">Master’s degree</option>
+                                                    <option value="3">Post grad</option>
+                                                    <option value="0">Less than a Bachelors</option>
+                                                  </select>
+                                                
+                                                <label for="devtype">Tech Role:</label>
+                                                <select class="form-select" aria-label="Default select example" name="devtype">
+                                                    <option selected>Tech Role:</option>
+                                                    <option value="0">Developer, back-end</option>
+                                                    <option value="1">Developer, full-stack</option>
+                                                    <option value="2">Database administrator</option>
+                                                    <option value="3">Developer, front-end</option>
+                                                    <option value="4">Data or business analyst</option>
+                                                    <option value="5">Academic researcher</option>
+                                                    <option value="6">Designer</option>
+                                                    <option value="7">Developer, desktop or enterprise applications</option>
+                                                    <option value="8">Data scientist or machine learning specialist</option>
+                                                    <option value="9">Developer, mobile</option>
+                                                    <option value="10">Developer, embedded applications or devices</option>
+                                                    <option value="11">Other</option>
+                                                    <option value="12">DevOps specialist</option>
+                                                    <option value="13">Developer, QA or test</option>
+                                                    <option value="14">Engineer, data</option>
+                                                    <option value="15">Engineering manager</option>
+                                                    <option value="16">Developer, game or graphics</option>
+                                                </select>
+
+                                                <label for="experience">Years of XP:</label>
+                                                <input type="number" id="experience" name="experience"
+                                                    placeholder="Type how many years of experience do you">
+
+                                                <button type="submit"
+                                                    class="btn btn-primary btn-block btn-large">Predict the Salary</button>
+                                            </form>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        </p>
+                                        {% if prediction_text %}
+                                        <p class="prediction-result" style="text-align: center;">O salário estimado é {{ prediction_text }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <div>
+                    <p class="body-copy" style="text-align: center;">Thank you!</p>
+                </div>
+            </footer>
+        
+</body>
+</html>
