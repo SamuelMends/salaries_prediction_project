@@ -32,4 +32,7 @@ def predict():
     }
     except KeyError as e:
         return render_template("home.html", prediction_text = f"Entrada inválida. Erro: {e}")
-        
+    
+    # Verifica se algum campo está vazio:
+    if any(value == '' for value in data.values()):
+        return render_template("home.html", prediction_text = "Verifique se todos os campos estão preenchidos.")
