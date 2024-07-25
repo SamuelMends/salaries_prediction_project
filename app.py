@@ -36,3 +36,19 @@ def predict():
     # Verifica se algum campo está vazio:
     if any(value == '' for value in data.values()):
         return render_template("home.html", prediction_text = "Verifique se todos os campos estão preenchidos.")
+    
+    # Aplica o padronizador
+    dados_padronizados = scaler_sam.transform([list(data.values())])
+    
+    # Previsão com o modelo:
+    output = modelo_sam.predict(dados_padronizados)[0]
+    
+    # Formata a saída
+    formatted_output = round(output, 2)
+    
+    # Renderiza o html com a previsão do modelo
+    return render_template("home.html", prediction_text = f"$ {format(formatted_output)} Per year")
+
+# Executa o app:
+if __name__ == "__main__":
+    app.run()
