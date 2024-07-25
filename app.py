@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 app = Flask(__name__)
 
 # Carregando o modelo e o padronizador:
-modelo_carregado = pickle.load(open('salary.model.pkl', 'rb'))
+modelo_carregado = pickle.load(open('salary_model.pkl', 'rb'))
 modelo_sam = modelo_carregado["model"]
 country_mapping = modelo_carregado["country_mapping"]
 education_mapping = modelo_carregado["education_mapping"]
