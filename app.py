@@ -20,35 +20,36 @@ scaler_sam = pickle.load(open('dsam_scaler.pkl', 'rb'))
 def home():
     return render_template('home.html')
 
-# Rota para a API de Previsão:
+# Rota para a API de previsão
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        data = {
+         data = {
             'Country': request.form['Country'],
-            'Education': request.form['education'],
-            'DevType': request.form['devtype'],
-            'Experience': float(request.form['experience']),
+            'education': request.form['education'],
+            'devtype' : request.form['devtype'],
+            'experience': float(request.form['experience']),
+            
     }
     except KeyError as e:
-        return render_template("home.html", prediction_text = f"Entrada inválida. Erro: {e}")
-    
-    # Verifica se algum campo está vazio:
+        return render_template("home.html", prediction_text=f"Entrada inválida. Erro: {e}")
+
+    # Verifica se algum campo está vazio
     if any(value == '' for value in data.values()):
-        return render_template("home.html", prediction_text = "Verifique se todos os campos estão preenchidos.")
+        return render_template("home.html", prediction_text="Verifique se todos os campos estão preenchidos.")
     
     # Aplica o padronizador
     dados_padronizados = scaler_sam.transform([list(data.values())])
-    
-    # Previsão com o modelo:
+
+    # Previsão com o modelo
     output = modelo_sam.predict(dados_padronizados)[0]
-    
+
     # Formata a saída
     formatted_output = round(output, 2)
     
     # Renderiza o html com a previsão do modelo
-    return render_template("home.html", prediction_text = f"$ {format(formatted_output)} Per year")
+    return render_template("home.html", prediction_text="$ {} [valor anual]".format(formatted_output))
 
-# Executa o app:
+# Executa a app
 if __name__ == "__main__":
     app.run()
