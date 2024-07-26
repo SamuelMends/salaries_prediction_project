@@ -8,6 +8,8 @@ from sklearn.preprocessing import StandardScaler
 # Cria a app
 app = Flask(__name__)
 
+app.config['DEBUG'] = True # Ativar modo de depuração
+
 # Carrega o modelo e o padronizador
 modelo_carregado = pickle.load(open('salary_model.pkl', 'rb'))
 modelo_dsa = modelo_carregado["model"]
