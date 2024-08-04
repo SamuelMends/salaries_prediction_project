@@ -53,6 +53,6 @@ def predict():
     # Renderiza o html com a previsão do modelo
     return render_template("home.html", prediction_text="$ {} [valor anual]".format(formatted_output))
 
-# Executa a app
+# Executa a app:
 if __name__ == "__main__":
     app.run()
